@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Simangungsong Tire Center - Terlengkap</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #f59e0b;       /* Amber Gold */
+            --primary-hover: #d97706;
+            --bg-dark: #0f172a;       /* Slate 900 */
+            --bg-card: #1e293b;       /* Slate 800 */
+            --text-main: #f8fafc;     /* Slate 50 */
+            --text-muted: #94a3b8;    /* Slate 400 */
+            --success: #10b981;       /* Emerald */
+            --border: rgba(255,255,255,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; font-size: 16px; }
+        
+        h1, h2, h3 { font-family: 'Teko', sans-serif; text-transform: uppercase; line-height: 1; }
+        .text-gold { color: var(--primary); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* --- HEADER --- */
+        header {
+            position: relative; height: 85vh; min-height: 500px;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), var(--bg-dark)), 
+                        url('https://images.unsplash.com/photo-1578844251758-2f71da645217?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px; overflow: hidden;
+        }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+        .hero-content { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; }
+
+        .status-pill {
+            background: rgba(16, 185, 129, 0.2); border: 1px solid var(--success); color: var(--success);
+            padding: 6px 16px; border-radius: 50px; font-weight: 600; font-size: 0.85rem;
+            margin-bottom: 20px; backdrop-filter: blur(5px); display: inline-flex; align-items: center; gap: 8px;
+        }
+        .status-dot { width: 8px; height: 8px; background: var(--success); border-radius: 50%; animation: pulse 2s infinite; }
+        h1.hero-title { font-size: clamp(3.5rem, 8vw, 6rem); margin-bottom: 15px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
+        p.hero-desc { font-size: clamp(1rem, 2vw, 1.25rem); color: #cbd5e1; max-width: 600px; margin-bottom: 30px; font-weight: 300; }
+        
+        .btn { padding: 12px 28px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: 0.3s; text-transform: uppercase; letter-spacing: 0.5px; border: none; cursor: pointer; }
+        .btn-primary { background: var(--primary); color: #000; }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3); }
+        .btn-outline { background: transparent; border: 1px solid white; color: white; }
+        .btn-outline:hover { background: white; color: #000; }
+
+        /* --- INFO CARDS --- */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: -60px; position: relative; z-index: 10; padding-bottom: 40px; }
+        .info-card {
+            background: rgba(30, 41, 59, 0.8); backdrop-filter: blur(12px); border: 1px solid var(--border); border-radius: 16px; padding: 25px; display: flex; align-items: center; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .info-icon { width: 50px; height: 50px; background: rgba(245, 158, 11, 0.1); color: var(--primary); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .info-text h4 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1rem; margin-bottom: 2px; }
+
+        /* --- BRAND SECTION --- */
+        .brand-section { padding: 60px 0; border-bottom: 1px solid var(--border); overflow: hidden; background: rgba(2, 6, 23, 0.5); }
+        .brand-header { text-align: center; margin-bottom: 40px; }
+        .brand-header h3 { font-size: 2.5rem; margin-bottom: 5px; color: white; }
+        .brand-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        
+        .brand-item {
+            width: 110px; height: 110px; background: white; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center; padding: 15px; position: relative;
+            transition: all 0.4s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); cursor: pointer;
+            animation: float 4s ease-in-out infinite;
+        }
+        .brand-item:nth-child(even) { animation-delay: 1s; }
+        .brand-item:nth-child(3n) { animation-delay: 2s; }
+        
+        .brand-item img { 
+            max-width: 100%; max-height: 100%; object-fit: contain; 
+            filter: grayscale(100%); opacity: 0.6; transition: 0.3s; 
+        }
+        
+        .brand-item:hover { transform: scale(1.15) rotate(2deg); border: 2px solid var(--primary); animation-play-state: paused; z-index: 10; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4); }
+        .brand-item:hover img { filter: grayscale(0%); opacity: 1; }
+        
+        .local-badge { position: absolute; top: -8px; right: -8px; background: #ef4444; color: white; font-size: 0.65rem; padding: 4px 8px; border-radius: 20px; font-weight: bold; border: 2px solid var(--bg-dark); }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+
+        /* --- CATALOG --- */
+        .filter-wrapper { position: sticky; top: 0; z-index: 50; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 15px 0; border-bottom: 1px solid var(--border); margin-bottom: 30px; }
+        .filter-container { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; justify-content: center; }
+        @media (max-width: 600px) { .filter-container { justify-content: flex-start; padding: 0 20px 10px 20px; } }
+        .filter-container::-webkit-scrollbar { height: 0px; background: transparent; }
+        
+        .btn-filter { white-space: nowrap; padding: 8px 20px; border-radius: 50px; border: 1px solid #334155; background: transparent; color: var(--text-muted); cursor: pointer; transition: 0.3s; font-size: 0.9rem; }
+        .btn-filter.active, .btn-filter:hover { background: var(--primary); color: #000; border-color: var(--primary); }
+
+        .search-wrapper { max-width: 600px; margin: 0 auto 40px auto; position: relative; }
+        .search-input { width: 100%; padding: 16px 20px 16px 50px; border-radius: 12px; background: #1e293b; border: 1px solid #334155; color: white; outline: none; transition: 0.3s; font-size: 1rem; }
+        .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+        .search-icon { position: absolute; left: 20px; top: 50%; transform: translateY(-50%); color: var(--text-muted); }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
+        .product-card { background: var(--bg-card); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); transition: 0.3s; display: flex; flex-direction: column; height: 100%; }
+        .product-card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .p-image { height: 180px; position: relative; overflow: hidden; background: #000; }
+        .p-image img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; opacity: 0.9; }
+        .product-card:hover .p-image img { transform: scale(1.1); opacity: 1; }
+        .p-badge { position: absolute; top: 10px; right: 10px; background: var(--primary); color: #000; font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; }
+        .p-body { padding: 15px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .p-title { font-size: 1rem; font-weight: 700; margin-bottom: 5px; color: white; }
+        .p-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px; line-height: 1.5; }
+        
+        .btn-wa { width: 100%; padding: 10px; border-radius: 8px; background: linear-gradient(135deg, #25D366, #128C7E); color: white; font-weight: 600; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.2s; font-size: 0.9rem; }
+        .btn-wa:hover { filter: brightness(1.1); }
+
+        /* --- MAP --- */
+        .location-section { margin-top: 80px; position: relative; }
+        .map-container { width: 100%; height: 500px; border-top: 4px solid var(--primary); border-bottom: 4px solid var(--primary); position: relative; }
+        .address-card { position: absolute; top: 40px; left: 40px; width: 320px; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); padding: 30px; border-radius: 16px; border-left: 5px solid var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.6); pointer-events: none; }
+        .address-card > * { pointer-events: auto; }
+        @media (max-width: 768px) { .address-card { position: relative; top: 0; left: 0; width: 100%; border-radius: 0; border-left: none; border-bottom: 1px solid var(--border); text-align: center; } }
+
+        /* --- FOOTER & FAB --- */
+        footer { background: #020617; padding: 40px 20px; text-align: center; border-top: 1px solid #1e293b; }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin: 20px 0; }
+        .social-links a { color: var(--text-muted); font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { color: var(--primary); transform: scale(1.2); }
+        .fab-wa { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 2rem; box-shadow: 0 10px 20px rgba(0,0,0,0.4); z-index: 1000; text-decoration: none; animation: pulse-green 2s infinite; }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+    </style>
+</head>
+<body>
+
+<header id="top">
+    <div id="particles-js"></div>
+    <div class="hero-content">
+        <div class="status-pill" data-aos="fade-down"><div class="status-dot"></div> BUKA • SIAP MELAYANI</div>
+        <h1 class="hero-title" data-aos="zoom-in" data-aos-duration="1000">SIMANGUNGSONG<br><span class="text-gold">TIRE CENTER</span></h1>
+        <p class="hero-desc" data-aos="fade-up" data-aos-delay="200">Spesialis Ban & Oli Terlengkap. Pilihan Merek Lokal & Internasional Terbaik.</p>
+        <div class="hero-btns" data-aos="fade-up" data-aos-delay="400">
+            <a href="#katalog" class="btn btn-primary"><i class="fas fa-search"></i> Cari Ban</a>
+            <a href="#lokasi" class="btn btn-outline"><i class="fas fa-map-marker-alt"></i> Petunjuk Arah</a>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    <div class="info-grid">
+        <div class="info-card" data-aos="fade-up"><div class="info-icon"><i class="fas fa-clock"></i></div><div class="info-text"><h4>Jam Operasional</h4><p>Setiap Hari: 07.00 - 21.00 WIB</p></div></div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="100"><div class="info-icon"><i class="fas fa-tools"></i></div><div class="info-text"><h4>Layanan Mekanik</h4><p>Tambal Ban, Ganti Oli, Nitrogen</p></div></div>
+        <div class="info-card" data-aos="fade-up" data-aos-delay="200"><div class="info-icon"><i class="fas fa-check-circle"></i></div><div class="info-text"><h4>Stok Lengkap</h4><p>Tersedia 40+ Merek & Tipe</p></div></div>
+    </div>
+</div>
+
+<section class="brand-section">
+    <div class="container">
+        <div class="brand-header" data-aos="fade-up">
+            <h3>BRAND <span class="text-gold">PARTNERS</span></h3>
+            <p>Distributor Resmi Merek Pilihan</p>
+        </div>
+        
+        <div class="brand-grid">
+            <div class="brand-item" title="Pertamina"><span class="local-badge">ID</span><img src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Pertamina_Logo.svg" alt="Pertamina"></div>
+            <div class="brand-item" title="Gajah Tunggal"><span class="local-badge">ID</span><img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/83/Gajah_Tunggal_logo.svg/1200px-Gajah_Tunggal_logo.svg.png" alt="Gajah Tunggal"></div>
+            <div class="brand-item" title="GT Radial"><span class="local-badge">ID</span><img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/GT_Radial_logo.svg" alt="GT Radial"></div>
+            <div class="brand-item" title="FDR Tire"><span class="local-badge">ID</span><img src="https://fdrtire.com/assets/front/images/logo_fdr_red.png" alt="FDR"></div>
+            <div class="brand-item" title="Corsa"><span class="local-badge">ID</span><img src="https://corsatire.co.id/wp-content/uploads/2018/05/logo_corsa.png" alt="Corsa"></div>
+            <div class="brand-item" title="Aspira"><span class="local-badge">ID</span><img src="https://www.astraotoparts.co.id/img/logo-aspira.png" alt="Aspira"></div>
+            <div class="brand-item" title="Achilles"><span class="local-badge">ID</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Achilles_Radial_logo.svg/2560px-Achilles_Radial_logo.svg.png" alt="Achilles"></div>
+            <div class="brand-item" title="Federal Oil"><span class="local-badge">ID</span><img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Federal_Oil_Logo.png" alt="Federal Oil"></div>
+
+            <div class="brand-item" title="Bridgestone"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Bridgestone_logo.svg/2560px-Bridgestone_logo.svg.png" alt="Bridgestone"></div>
+            <div class="brand-item" title="Michelin"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Michelin_Logo.svg/1200px-Michelin_Logo.svg.png" alt="Michelin"></div>
+            <div class="brand-item" title="Dunlop"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Dunlop_logo.svg/2560px-Dunlop_logo.svg.png" alt="Dunlop"></div>
+            <div class="brand-item" title="Pirelli"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Pirelli_logo.svg/2560px-Pirelli_logo.svg.png" alt="Pirelli"></div>
+            <div class="brand-item" title="IRC Tire"><img src="https://irctire.co.id/images/logo_irc_red.png" alt="IRC"></div>
+            <div class="brand-item" title="Hankook"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Hankook_Tire_logo.svg/2560px-Hankook_Tire_logo.svg.png" alt="Hankook"></div>
+            <div class="brand-item" title="Shell"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/e8/Shell_logo.svg/1200px-Shell_logo.svg.png" alt="Shell"></div>
+            <div class="brand-item" title="Motul"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Motul_logo.svg/2560px-Motul_logo.svg.png" alt="Motul"></div>
+            <div class="brand-item" title="Castrol"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Castrol_Logo.svg/2560px-Castrol_Logo.svg.png" alt="Castrol"></div>
+            <div class="brand-item" title="Yamalube"><h4 style="color:black; font-weight:900; margin:0; font-size:0.7rem;">YAMALUBE</h4></div>
+        </div>
+    </div>
+</section>
+
+<section id="katalog">
+    <div class="container" style="margin-top:40px;">
+        <div class="catalog-header" data-aos="fade-up">
+            <h2>KATALOG <span class="text-gold">LENGKAP</span></h2>
+            <p style="color:var(--text-muted)">Gunakan pencarian untuk menemukan produk Anda.</p>
+        </div>
+    </div>
+
+    <div class="filter-wrapper">
+        <div class="container">
+            <div class="filter-container">
+                <button class="btn-filter active" onclick="filterData('all')">Semua</button>
+                <button class="btn-filter" onclick="filterData('ban_motor')"><i class="fas fa-motorcycle"></i> Ban Motor</button>
+                <button class="btn-filter" onclick="filterData('ban_mobil')"><i class="fas fa-car"></i> Ban Mobil</button>
+                <button class="btn-filter" onclick="filterData('ban_truk')"><i class="fas fa-truck-moving"></i> Ban Niaga/Truk</button>
+                <button class="btn-filter" onclick="filterData('oli')"><i class="fas fa-oil-can"></i> Oli & Pelumas</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="search-wrapper" data-aos="fade-up">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="search" class="search-input" placeholder="Cari merk, tipe (Contoh: Pirelli, Nmax, Truk)..." onkeyup="searchData()">
+        </div>
+
+        <div id="etalase" class="product-grid">
+            <div style="text-align:center; padding: 50px; grid-column: 1/-1; color: var(--text-muted);">
+                <i class="fas fa-spinner fa-spin fa-2x"></i><br>Memuat Katalog...
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="lokasi" class="location-section">
+    <div class="map-container">
+        <iframe width="100%" height="100%" frameborder="0" style="border:0;" src="https://maps.google.com/maps?q=-5.420562094311044,105.80186498102445&t=h&z=19&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy"></iframe>
+        <div class="address-card" data-aos="fade-right">
+            <h3 style="color:var(--primary); margin-bottom:10px;">LOKASI BENGKEL</h3>
+            <p style="color:white; margin-bottom:5px; font-weight:600;"><i class="fas fa-map-pin"></i> Simangungsong</p>
+            <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:20px; line-height:1.6;">Jalan Poros Desa Karya Makmur,<br>Kecamatan Labuhan Maringgai,<br>Lampung Timur.</p>
+            <a href="https://www.google.com/maps?q=-5.420562,105.801864" target="_blank" class="btn btn-primary" style="width:100%; display:block; text-align:center;"><i class="fas fa-location-arrow"></i> Buka Google Maps</a>
+            <p style="margin-top:15px; font-size:0.8rem; color:var(--text-muted);"><i class="fas fa-crosshairs"></i> Koordinat: -5.420562, 105.801864</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <h2 style="font-size: 2.5rem; color: var(--primary);">SIMANGUNGSONG</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Professional Tire & Oil Services</p>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/6281272895108"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p style="font-size:0.8rem; color:#475569;">© 2025 Simangungsong. All rights reserved.</p>
+    </div>
+</footer>
+
+<a href="https://wa.me/6281272895108?text=Halo%20Admin%20Simangungsong,%20saya%20mau%20tanya%20produk..." class="fab-wa" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<script>
+    AOS.init({ once: true, duration: 800 });
+    particlesJS("particles-js", {
+        "particles": { "number": { "value": 60, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#f59e0b" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3, "random": true }, "size": { "value": 4, "random": true }, "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" } },
+        "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true } },
+        "retina_detect": true
+    });
+
+    const WA_PHONE = "6281272895108";
+    // Gambar Generic HD
+    const img = {
+        ban_sport: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=800&q=80',
+        ban_harian: 'https://images.unsplash.com/photo-1613478748347-0376be0e15e7?w=800&q=80',
+        ban_trail:  'https://images.unsplash.com/photo-1570731941279-144543e89812?w=800&q=80',
+        ban_mobil:  'https://images.unsplash.com/photo-1469285994282-454ceb49e63c?w=800&q=80',
+        ban_truk:   'https://images.unsplash.com/photo-1555682339-1924b8d6a10e?w=800&q=80',
+        oli_motor:  'https://images.unsplash.com/photo-1630501272544-b90147338238?w=800&q=80',
+        oli_mobil:  'https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=800&q=80'
+    };
+
+    // --- DATABASE LENGKAP (40+ Item) ---
+    const products = [
+        // --- BAN MOTOR ---
+        { cat: 'ban_motor', brand: 'IRC', name: 'IRC NR73 / NR25', desc: 'Ban standar harian, awet & tidak licin. Cocok untuk bebek/matic.', img: img.ban_harian },
+        { cat: 'ban_motor', brand: 'IRC', name: 'IRC Fasti 2 Racing', desc: 'Soft compound balap. Grip maksimal aspal kering.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'FDR', name: 'FDR Sport XR Evo', desc: 'Tubeless performa tinggi, stabil kecepatan tinggi.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'FDR', name: 'FDR Spartax', desc: 'Motif tangguh untuk harian dan jalan semi-rusak.', img: img.ban_harian },
+        { cat: 'ban_motor', brand: 'Maxxis', name: 'Maxxis Green Devil', desc: 'Ban alur dalam, tangguh di jalan basah/rusak.', img: img.ban_trail },
+        { cat: 'ban_motor', brand: 'Maxxis', name: 'Maxxis Victra S98', desc: 'Dual compound premium, favorit anak muda.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'Michelin', name: 'Michelin Pilot Street', desc: 'Kualitas Premium Eropa, sangat awet dan stabil.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'Pirelli', name: 'Pirelli Diablo Rosso Sport', desc: 'Teknologi WSBK, grip super untuk motor sport/matic.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'Pirelli', name: 'Pirelli Angel City', desc: 'Ban touring, tahan lama dan kuat di jalan basah.', img: img.ban_harian },
+        { cat: 'ban_motor', brand: 'Aspira', name: 'Aspira Premio Terreno', desc: 'Dual purpose (Aspal & Tanah), teknologi Pirelli.', img: img.ban_trail },
+        { cat: 'ban_motor', brand: 'Aspira', name: 'Aspira Premio Sportivo', desc: 'Ban jalan raya performa tinggi, awet.', img: img.ban_harian },
+        { cat: 'ban_motor', brand: 'Corsa', name: 'Corsa R46 Platinum', desc: 'Soft compound lokal, lengket untuk cornering.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'Corsa', name: 'Corsa Terminator', desc: 'Ban harian dengan desain agresif dan modern.', img: img.ban_harian },
+        { cat: 'ban_motor', brand: 'Zeneos', name: 'Zeneos ZN62', desc: 'Desain kembangan unik, grip baik dan gaya.', img: img.ban_sport },
+        { cat: 'ban_motor', brand: 'Swallow', name: 'Swallow SB-117 Trail', desc: 'Semi trail (tahu), jago di tanah dan aspal.', img: img.ban_trail },
+        { cat: 'ban_motor', brand: 'Swallow', name: 'Swallow Classic', desc: 'Ban motif klasik garis lurus untuk motor retro.', img: img.ban_harian },
+
+        // --- BAN MOBIL ---
+        { cat: 'ban_mobil', brand: 'Bridgestone', name: 'Bridgestone Ecopia', desc: 'Hemat BBM, senyap, nyaman untuk keluarga.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'Bridgestone', name: 'Bridgestone Techno', desc: 'Pilihan ekonomis dengan kualitas standar tinggi.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'GT Radial', name: 'GT Radial Savero A/T', desc: 'Gagah untuk SUV/Jip segala medan (All Terrain).', img: img.ban_truk },
+        { cat: 'ban_mobil', brand: 'GT Radial', name: 'GT Radial Champiro Eco', desc: 'Ban ramah lingkungan, stabil dan awet.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'Dunlop', name: 'Dunlop Enasave', desc: 'Standar OEM banyak mobil (Avanza/Xenia), irit BBM.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'Dunlop', name: 'Dunlop Grandtrek', desc: 'Ban ketangguhan tinggi untuk SUV.', img: img.ban_truk },
+        { cat: 'ban_mobil', brand: 'Hankook', name: 'Hankook Kinergy Eco', desc: 'Teknologi Korea, kenyamanan maksimal.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'Hankook', name: 'Hankook Dynapro', desc: 'Ban SUV tangguh untuk jalanan Indonesia.', img: img.ban_truk },
+        { cat: 'ban_mobil', brand: 'Achilles', name: 'Achilles ATR Sport', desc: 'Ban profil tipis/sporty untuk modifikasi velg.', img: img.ban_mobil },
+        { cat: 'ban_mobil', brand: 'Accelera', name: 'Accelera PHI', desc: 'Ban performa stabil, tersedia ukuran lebar/ceper.', img: img.ban_mobil },
+
+        // --- BAN TRUK / NIAGA ---
+        { cat: 'ban_truk', brand: 'Gajah Tunggal', name: 'Gajah Tunggal Miller', desc: 'Ban benang nilon, super kuat muatan berat.', img: img.ban_truk },
+        { cat: 'ban_truk', brand: 'Gajah Tunggal', name: 'GT Super 88', desc: 'Ban kawat (Radial) untuk ketahanan panas.', img: img.ban_truk },
+        { cat: 'ban_truk', brand: 'Dunlop', name: 'Dunlop SP Touring R1', desc: 'Cocok untuk GranMax/L300 muatan.', img: img.ban_mobil },
+        { cat: 'ban_truk', brand: 'Bridgestone', name: 'Bridgestone Duravis', desc: 'Kuat dan tahan lama untuk armada niaga.', img: img.ban_truk },
+        { cat: 'ban_truk', brand: 'Aeolus', name: 'Aeolus Truck', desc: 'Pilihan ekonomis untuk truk besar.', img: img.ban_truk },
+
+        // --- OLI ---
+        { cat: 'oli', brand: 'Pertamina', name: 'Enduro 4T Racing', desc: 'Tarikan enteng, wangi khas racing. Anti-slip.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Pertamina', name: 'Mesran Super 20W-50', desc: 'Pelindung mesin tua/beban berat. Kental.', img: img.oli_mobil },
+        { cat: 'oli', brand: 'Pertamina', name: 'Fastron Techno', desc: 'Sintetik modern untuk mobil bensin/diesel.', img: img.oli_mobil },
+        { cat: 'oli', brand: 'Motul', name: 'Motul 5100 Ester', desc: 'Oli premium Technosynthese untuk performa.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Motul', name: 'Motul Scooter LE', desc: 'Khusus matic, mesin halus dan dingin.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Federal', name: 'Federal Oil Ultratec', desc: 'Spesialis dingin untuk motor kerja keras.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Shell', name: 'Shell Helix HX6', desc: 'Membersihkan kerak mesin mobil aktif.', img: img.oli_mobil },
+        { cat: 'oli', brand: 'Shell', name: 'Shell Advance AX7', desc: 'Semi sintetik untuk motor bebek/sport.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Castrol', name: 'Castrol Power 1', desc: 'Akselerasi superior saat gas ditarik.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Castrol', name: 'Castrol Magnatec', desc: 'Molekul pintar menempel pada mesin mobil.', img: img.oli_mobil },
+        { cat: 'oli', brand: 'Yamalube', name: 'Yamalube Sport', desc: 'Oli standar resmi rekomendasi Yamaha.', img: img.oli_motor },
+        { cat: 'oli', brand: 'AHM Oil', name: 'AHM MPX 2 Matic', desc: 'Oli standar resmi rekomendasi Honda Matic.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Evalube', name: 'Evalube Runner', desc: 'Pilihan ekonomis kualitas standar.', img: img.oli_motor },
+        { cat: 'oli', brand: 'Top 1', name: 'Top 1 Action Matic', desc: 'Oli sintetik Amerika tahan panas.', img: img.oli_motor }
+    ];
+
+    function render(data) {
+        const grid = document.getElementById('etalase');
+        grid.innerHTML = "";
+        if(data.length === 0) { grid.innerHTML = `<div style="grid-column:1/-1; text-align:center; padding:50px; color:#64748b;"><i class="fas fa-search fa-3x"></i><br><br>Produk tidak ditemukan.</div>`; return; }
+        data.forEach((item, index) => {
+            const waMsg = `Halo Admin Simangungsong, saya lihat di web dan mau tanya stok: *${item.name}* (${item.brand}). Mohon infonya.`;
+            const waLink = `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(waMsg)}`;
+            const delay = Math.min(index * 30, 1000); // Cap delay animation
+            const html = `
+                <div class="product-card" data-aos="fade-up" data-aos-delay="${delay}">
+                    <div class="p-image"><span class="p-badge">${item.brand}</span><img src="${item.img}" alt="${item.name}" loading="lazy"></div>
+                    <div class="p-body"><div><h3 class="p-title">${item.name}</h3><p class="p-desc">${item.desc}</p></div><a href="${waLink}" target="_blank" class="btn-wa"><i class="fab fa-whatsapp"></i> Pesan / Tanya Stok</a></div>
+                </div>`;
+            grid.innerHTML += html;
+        });
+    }
+
+    function filterData(cat) { document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active')); event.currentTarget.classList.add('active'); const res = cat === 'all' ? products : products.filter(i => i.cat === cat); render(res); }
+    function searchData() { const q = document.getElementById('search').value.toLowerCase(); const res = products.filter(i => i.name.toLowerCase().includes(q) || i.brand.toLowerCase().includes(q) || i.desc.toLowerCase().includes(q)); render(res); }
+    window.addEventListener('load', () => render(products));
+</script>
+</body>
+</html>
